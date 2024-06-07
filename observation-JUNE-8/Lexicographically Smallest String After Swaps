@@ -1,26 +1,60 @@
-def smallestStringWithSwaps(s, pairs):
-    parent = {i: i for i in range(len(s))}
+class Graph:
+	def __init__(self, V):
+		self.V = V 
+		self.adj = [[] for i in range(V)] 
 
-    def find(x):
-        if x != parent[x]:
-            parent[x] = find(parent[x])
-        return parent[x]
+	def addPair(self, v, w):
+		v -= 1
+		w -= 1
+		self.adj[v].append(w) 
+		self.adj[w].append(v) 
 
-    def union(x, y):
-        parent[find(x)] = find(y)
+	def disjointSets(self):
+		visited = [False] * self.V 
+		all_sets = [] 
 
-    for x, y in pairs:
-        union(x, y)
+		def countAll(v, group):
+			visited[v] = True
+			group.append(v + 1) 
+for neighbor in self.adj[v]:
+				if not visited[neighbor]:
+					countAll(neighbor, group)
 
-    groups = collections.defaultdict(list)
-    for i in range(len(s)):
-        groups[find(i)].append(s[i])
+		for i in range(self.V):
+			if not visited[i]: 
+				# Create a new group
+				group = [] 
+				# Find all vertices connected to this one
+				countAll(i, group) 
+				all_sets.append(group) 
 
-    for key in groups:
-        groups[key].sort(reverse=True)
+		return all_sets
+Str = 'zcxfbe'
+N = 6
+Pairs = [[0, 1], [0, 2], [3, 5]] 
 
-    ans = []
-    for i in range(len(s)):
-        ans.append(groups[find(i)].pop())
+g = Graph(N) 
+for i in Pairs:
+	g.addPair(i[0], i[1])
+groups = g.disjointSets()
 
-    return ''.join(ans)
+key = [] # List to store indices of characters
+value = [] # List to store characters
+
+for i in range(len(groups)):
+	semians = [] 
+	for j in groups[i]:
+		semians.append(Str[j]) 
+	semians.sort()
+	groups[i].sort() 
+	
+	value.extend(semians) 
+	key.extend(groups[i]) 
+
+ans = [""] * N 
+
+for i in range(N):
+	ans[key[i]] = value[i]
+
+print(''.join(ans))
+
