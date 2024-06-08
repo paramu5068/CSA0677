@@ -1,0 +1,11 @@
+def removeDuplicates(s: str) -> str:
+    while True:
+        prev_len = len(s)
+        for char in 'abcdefghijklmnopqrstuvwxyz':
+            s = s.replace(char, '', 1)
+        if len(s) == prev_len:
+            break
+    return s
+s = "aabcbbca"
+result = removeDuplicates(s)
+print(result)
