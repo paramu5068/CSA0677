@@ -1,0 +1,25 @@
+from collections import defaultdict
+
+def minTime(n, edges, hasApple):
+    graph = defaultdict(list)
+    for a, b in edges:
+        graph[a].append(b)
+        graph[b].append(a)
+
+    def dfs(node, parent):
+        time = 0
+        for child in graph[node]:
+            if child != parent:
+                time += dfs(child, node)
+        if time > 0 or hasApple[node]:
+            return time + 2
+        return 0
+
+    return max(0, dfs(0, -1) - 2)
+
+# Example
+n = 7
+edges = [[0,1],[0,2],[1,4],[1,5],[2,3],[2,6]]
+hasApple = [False, False, True, False, True, True, False]
+output = minTime(n, edges, hasApple)
+print(output)
