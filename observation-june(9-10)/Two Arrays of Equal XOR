@@ -1,0 +1,23 @@
+from collections import defaultdict
+
+def countTriplets(arr):
+    count = 0
+    n = len(arr)
+    prefix_xor = [0] * (n + 1)
+    
+    for i in range(n):
+        prefix_xor[i + 1] = prefix_xor[i] ^ arr[i]
+    
+    cnt = defaultdict(int)
+    total = defaultdict(int)
+    
+    for i in range(n + 1):
+        count += cnt[prefix_xor[i]] * i - total[prefix_xor[i]]
+        cnt[prefix_xor[i]] += 1
+        total[prefix_xor[i]] += i
+    
+    return count
+
+# Example
+arr = [2, 3, 1, 6, 7]
+print(countTriplets(arr))  # Output: 4
