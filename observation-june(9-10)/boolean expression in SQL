@@ -1,0 +1,30 @@
+import sqlite3
+
+conn = sqlite3.connect('expressions.db')
+cursor = conn.cursor()
+
+def evaluate_expression(left_operand, operator, right_operand):
+    query = f"""
+    SELECT e.left_operand, e.operator, e.right_operand,
+        CASE
+            WHEN e.operator = '>' THEN CASE WHEN v1.value > v2.value THEN 'true' ELSE 'false' END
+            WHEN e.operator = '<' THEN CASE WHEN v1.value < v2.value THEN 'true' ELSE 'false' END
+            WHEN e.operator = '=' THEN CASE WHEN v1.value = v2.value THEN 'true' ELSE 'false' END
+        END AS value
+    FROM Expressions e
+    JOIN Variables v1 ON e.left_operand = v1.name
+    JOIN Variables v2 ON e.right_operand = v2.name
+    WHERE e.left_operand = ? AND e.operator = ? AND e.right_operand = ?
+    """
+    cursor.execute(query, (left_operand, operator, right_operand))
+    results = cursor.fetchall()
+    for row in results:
+        print(row)
+
+left_operand = input("Enter left operand: ")
+operator = input("Enter operator (>, <, =): ")
+right_operand = input("Enter right operand: ")
+
+evaluate_expression(left_operand, operator, right_operand)
+
+conn.close()
