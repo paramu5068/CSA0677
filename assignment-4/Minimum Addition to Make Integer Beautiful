@@ -1,0 +1,7 @@
+def minAddToMakeBeautiful(n, target):
+    current_sum = sum([int(digit) for digit in str(n)])
+    return max(0, target - current_sum)
+n = 16
+target = 6
+output = minAddToMakeBeautiful(n, target)
+print(output)
