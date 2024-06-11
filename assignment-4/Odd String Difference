@@ -1,0 +1,15 @@
+def find_difference_string(words):
+    n = len(words[0])
+    for i in range(n - 1):
+        diff = ord(words[0][i + 1]) - ord(words[0][i])
+    
+    for word in words:
+        temp_diff = []
+        for i in range(n - 1):
+            temp_diff.append(ord(word[i + 1]) - ord(word[i]))
+        if temp_diff != diff:
+            return word
+
+words = ["adc", "wzy", "abc"]
+result = find_difference_string(words)
+print(result)
