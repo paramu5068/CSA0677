@@ -1,0 +1,13 @@
+def max_chunks_to_make_sorted(arr):
+    chunks = 0
+    max_num = 0
+    for i, num in enumerate(arr):
+        max_num = max(max_num, num)
+        if max_num == i:
+            chunks += 1
+    return chunks
+
+# Example
+arr = [4, 3, 2, 1, 0]
+output = max_chunks_to_make_sorted(arr)
+print(output)
