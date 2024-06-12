@@ -1,0 +1,11 @@
+from collections import Counter
+
+def frequency_sort(s):
+    counts = Counter(s)
+    sorted_chars = sorted(s, key=lambda x: (-counts[x], x))
+    return ''.join(sorted_chars)
+
+# Example
+s = "tree"
+output = frequency_sort(s)
+print(output)
