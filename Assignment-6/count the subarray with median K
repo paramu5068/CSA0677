@@ -1,0 +1,36 @@
+def countSubarraysWithMedianK(nums, k):
+    n = len(nums)
+    k_index = nums.index(k)
+
+    # Balance map to store the number of times each balance value has been seen
+    balance_count = {0: 1}
+    balance = 0
+    count = 0
+    
+    # Iterate through the array
+    for i in range(n):
+        if nums[i] > k:
+            balance += 1
+        elif nums[i] < k:
+            balance -= 1
+        
+        # When i is to the right of k_index, we check the balance
+        if i >= k_index:
+            # We need balance or balance - 1 to have a valid subarray
+            count += balance_count.get(balance, 0)
+            count += balance_count.get(balance - 1, 0)
+        
+        # Update balance_count
+        if i < k_index:
+            balance_count[balance] = balance_count.get(balance, 0) + 1
+
+    return count
+
+# Example usage:
+nums1 = [3, 2, 1, 4, 5]
+k1 = 4
+print(countSubarraysWithMedianK(nums1, k1))  # Output: 3
+
+nums2 = [2, 3, 1]
+k2 = 3
+print(countSubarraysWithMedianK(nums2, k2))  # Output: 1
