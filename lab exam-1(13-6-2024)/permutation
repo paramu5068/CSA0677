@@ -1,0 +1,7 @@
+from itertools import permutations
+
+def permuteUnique(nums):
+    return list(set(permutations(nums)))
+
+nums1 = [1, 1, 2]
+print(permuteUnique(nums1))
