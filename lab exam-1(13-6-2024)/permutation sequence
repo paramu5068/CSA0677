@@ -1,0 +1,20 @@
+import math
+
+def getPermutation(n, k):
+    numbers = list(range(1, n + 1))
+    k -= 1
+    factorial = math.factorial(n)
+    result = []
+
+    for i in range(n, 0, -1):
+        factorial //= i
+        index = k // factorial
+        k %= factorial
+        result.append(str(numbers[index]))
+        numbers.pop(index)
+
+    return "".join(result)
+
+n = 3
+k = 3
+print(getPermutation(n, k))
