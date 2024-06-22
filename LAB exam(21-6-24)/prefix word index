@@ -1,0 +1,6 @@
+sentence = "i love eating burger"
+searchWord = "burg"
+words = sentence.split()
+index = next((i for i, word in enumerate(words) if word.startswith(searchWord)), None)
+output = index + 1 if index is not None else -1
+print(output)
