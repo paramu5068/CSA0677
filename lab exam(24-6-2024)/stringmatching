@@ -1,0 +1,6 @@
+def stringMatching(words):
+    return [word for word in words if any(other in word for other in words if other != word)]
+
+# Example
+words = ["mass", "as", "hero", "superhero"]
+print(stringMatching(words))
