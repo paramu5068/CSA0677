@@ -1,0 +1,31 @@
+import networkx as nx
+
+# Create a directed graph
+G = nx.DiGraph()
+
+# Add edges with weights to the graph
+edges = [
+    ('A', 'B', 1),
+    ('A', 'C', 5),
+    ('B', 'C', 2),
+    ('B', 'D', 1),
+    ('C', 'E', 3),
+    ('D', 'E', 1),
+    ('D', 'F', 6),
+    ('E', 'F', 2)
+]
+
+G.add_weighted_edges_from(edges)
+
+# Function to print the shortest paths from a source node
+def print_shortest_paths(G, source):
+    for target in G.nodes:
+        if source != target:
+            path = nx.dijkstra_path(G, source, target)
+            length = nx.dijkstra_path_length(G, source, target)
+            print(f"Shortest path from {source} to {target}: {path} with length {length}")
+
+# Print shortest paths for each router
+for router in G.nodes:
+    print(f"\nShortest paths from router {router}:")
+    print_shortest_paths(G, router)
