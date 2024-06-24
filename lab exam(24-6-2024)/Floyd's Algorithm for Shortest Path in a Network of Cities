@@ -1,0 +1,29 @@
+import numpy as np
+
+# Initialize the distance matrix
+distances = [[0, 3, 8, -4],
+             [np.inf, 0, 4, 1],
+             [2, np.inf, 0, -5],
+             [np.inf, 6, np.inf, 0]]
+
+# Floyd's Algorithm
+n = len(distances)
+for k in range(n):
+    for i in range(n):
+        for j in range(n):
+            if distances[i][j] > distances[i][k] + distances[k][j]:
+                distances[i][j] = distances[i][k] + distances[k][j]
+
+# Display the distance matrix before applying Floyd's Algorithm
+print("Distance Matrix Before Floyd's Algorithm:")
+for row in distances:
+    print(row)
+
+# Display the distance matrix after applying Floyd's Algorithm
+print("\nDistance Matrix After Floyd's Algorithm:")
+for row in distances:
+    print(row)
+
+# Shortest path from City 1 to City 3
+shortest_path = distances[0][2]
+print(f"\nShortest Path from City 1 to City 3: {shortest_path}")
