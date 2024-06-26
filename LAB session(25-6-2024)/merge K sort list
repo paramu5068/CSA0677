@@ -1,0 +1,6 @@
+lists = [[1,4,5],[1,3,4],[2,6]]
+merged_list = []
+for lst in lists:
+    merged_list += lst
+merged_list.sort()
+print(merged_list)
