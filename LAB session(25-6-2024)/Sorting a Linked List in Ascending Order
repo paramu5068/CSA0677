@@ -1,0 +1,27 @@
+class ListNode:
+    def __init__(self, val=0, next=None):
+        self.val = val
+        self.next = next
+
+def sort_linked_list(head):
+    current = head
+    while current:
+        next_node = current.next
+        while next_node:
+            if current.val > next_node.val:
+                current.val, next_node.val = next_node.val, current.val
+            next_node = next_node.next
+        current = current.next
+    return head
+
+# Input
+head = ListNode(4)
+head.next = ListNode(2)
+head.next.next = ListNode(1)
+head.next.next.next = ListNode(3)
+
+# Output
+sorted_head = sort_linked_list(head)
+while sorted_head:
+    print(sorted_head.val, end=" ")
+    sorted_head = sorted_head.next
