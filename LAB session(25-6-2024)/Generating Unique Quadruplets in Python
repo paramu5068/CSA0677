@@ -1,0 +1,14 @@
+nums = [1, 0, -1, 0, -2, 2]
+target = 0
+
+quadruplets = []
+
+for i in range(len(nums)):
+    for j in range(i + 1, len(nums)):
+        for k in range(j + 1, len(nums)):
+            for l in range(k + 1, len(nums)):
+                if nums[i] + nums[j] + nums[k] + nums[l] == target:
+                    quadruplets.append([nums[i], nums[j], nums[k], nums[l]])
+
+output = [list(x) for x in set(tuple(x) for x in quadruplets)]
+print(output)
