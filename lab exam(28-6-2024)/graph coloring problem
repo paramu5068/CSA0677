@@ -1,0 +1,27 @@
+graph = {
+    'A': ['B', 'C'],
+    'B': ['A', 'C', 'D'],
+    'C': ['A', 'B', 'D'],
+    'D': ['B', 'C']
+}
+
+colors = {
+    'A': None,
+    'B': None,
+    'C': None,
+    'D': None
+}
+
+color_options = ['Red', 'Green', 'Blue']
+
+for node in graph:
+    used_colors = []
+    for neighbor in graph[node]:
+        if colors[neighbor] is not None:
+            used_colors.append(colors[neighbor])
+    for color in color_options:
+        if color not in used_colors:
+            colors[node] = color
+            break
+
+print(colors)
