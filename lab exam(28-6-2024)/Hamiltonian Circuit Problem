@@ -1,0 +1,11 @@
+import itertools
+
+def is_hamiltonian(circuit):
+    return len(set(circuit)) == len(circuit) == n
+
+n = 4
+nodes = list(range(n))
+hamiltonian_circuits = [circuit for circuit in itertools.permutations(nodes) if is_hamiltonian(circuit)]
+
+for circuit in hamiltonian_circuits:
+    print(circuit)
