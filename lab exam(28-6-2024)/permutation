@@ -1,0 +1,10 @@
+import itertools
+
+# Generate permutations of [1, 2, 3]
+perms = list(itertools.permutations([1, 2, 3]))
+
+# Calculate the total number of permutations
+num_perms = len(perms)
+
+print("Permutations:", perms)
+print("Total Number of Permutations:", num_perms)
