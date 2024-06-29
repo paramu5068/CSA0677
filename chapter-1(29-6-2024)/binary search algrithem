@@ -1,0 +1,21 @@
+X = [3, 4, 6, -9, 10, 8, 9, 30]
+KEY = 10
+
+low = 0
+high = len(X) - 1
+found = False
+
+while low <= high:
+    mid = (low + high) // 2
+
+    if X[mid] == KEY:
+        print(f"Element {KEY} is found at position {mid + 1}")
+        found = True
+        break
+    elif X[mid] < KEY:
+        low = mid + 1
+    else:
+        high = mid - 1
+
+if not found:
+    print("Element not found")
