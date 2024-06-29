@@ -1,0 +1,21 @@
+m = 2
+n = 2
+N = 2
+i = 0
+j = 0
+
+dp = [[0] * n for _ in range(m)]
+for _ in range(N):
+    dp_new = [[0] * n for _ in range(m)]
+    for r in range(m):
+        for c in range(n):
+            for dr, dc in [(1, 0), (-1, 0), (0, 1), (0, -1)]:
+                nr, nc = r + dr, c + dc
+                if 0 <= nr < m and 0 <= nc < n:
+                    dp_new[nr][nc] += dp[r][c]
+                else:
+                    dp_new[r][c] += 1
+    dp = dp_new
+
+output = sum(map(sum, dp))
+print(output)
