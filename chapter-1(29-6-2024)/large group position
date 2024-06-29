@@ -1,0 +1,14 @@
+def large_group_positions(s):
+    result = []
+    start = 0
+    for i in range(len(s)):
+        if i == len(s) - 1 or s[i] != s[i + 1]:
+            if i - start + 1 >= 3:
+                result.append([start, i])
+            start = i + 1
+    return result
+
+# Test the function with the provided example
+s = "abbxxxxzzy"
+output = large_group_positions(s)
+print(output)
