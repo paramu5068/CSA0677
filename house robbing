@@ -1,0 +1,13 @@
+def rob(nums):
+    if len(nums) == 1:
+        return nums[0]
+    return max(rob_linear(nums[1:]), rob_linear(nums[:-1]))
+
+def rob_linear(nums):
+    prev, curr = 0, 0
+    for num in nums:
+        prev, curr = curr, max(prev + num, curr)
+    return curr
+
+nums = [2, 3, 2]
+print("The maximum money you can rob without alerting the police is", rob(nums))
