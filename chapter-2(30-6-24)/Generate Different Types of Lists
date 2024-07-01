@@ -1,0 +1,15 @@
+# An empty list
+empty_list = []
+print(empty_list)
+
+# A list with one element
+single_element_list = [1]
+print(single_element_list)
+
+# A list with all identical elements
+identical_elements_list = [7, 7, 7, 7]
+print(identical_elements_list)
+
+# A list with negative numbers
+negative_numbers_list = [-3, -7, -2, -5]
+print(negative_numbers_list)
