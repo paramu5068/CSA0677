@@ -1,0 +1,12 @@
+ candidates = [2, 3, 6, 7]
+target = 7
+results = []
+stack = [(0, [], target)]
+while stack:
+    index, path, target = stack.pop()
+    if target == 0:
+        results.append(path)
+    for i in range(index, len(candidates)):
+        if candidates[i] <= target:
+            stack.append((i, path + [candidates[i]], target - candidates[i]))
+print(results)
